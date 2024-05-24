@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TrainController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.welcome');
-});
+Route::get('/',[TrainController::class, 'getTrain'])->name('getTrain');
