@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Train;
 use Illuminate\Http\Request;
 
 class TrainController extends Controller
 {
 
-    public function getTrain(){
+    public function getTrain()
+    {   
 
-        $trains = TrainController::all();
-        dd($trains);
-        return view('pages.welcome', compact('trains'));
+        $trains = Train::all();
+        $currentDate = now()->format('Y-m-d');
+        $filteredTrain = Train::where('time_of_departure','like', $currentDate . '%')->get();
+        //  dd($filteredTrain);
+        return view('pages.welcome', compact('trains', 'filteredTrain'));
     }
 }
