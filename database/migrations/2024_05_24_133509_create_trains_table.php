@@ -19,8 +19,8 @@ return new class extends Migration
             $table->dateTime('time_of_arrival');
             $table->dateTime('time_of_departure');
             $table->string('train_code', 10)->unique();
-            $table->string('number_of_coaches', 20);
-            $table->integer('on_schedule')->nullable();
+            $table->tinyInteger('number_of_coaches');
+            $table->integer('on_schedule')->nullable()->default(true);
             $table->boolean('cancelled')->default(false);
             $table->timestamps();
         });
