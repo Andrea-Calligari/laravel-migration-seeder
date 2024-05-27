@@ -1,35 +1,40 @@
 @extends('layout.app')
 
-@section('title', 'Welcome')
+@section('title', 'Trains')
 
-<h1 class="text-danger text-center py-5">Welcome to your Template Repository!!!</h1>
-<p class="text-center fs-3"> All front-end assets is set and ready for your new projects! Enjoy! </p>
+
 
 
 
 @section('content')
-<div class="container">
-    <h1 class="text-center">Treni Filtrati con la data di oggi</h1>
+<div class="container py-5">
+    <h1 class="text-center p-4">Treni Filtrati con la data di oggi</h1>
     <div class="row">
-        @foreach ($filteredTrain as $train)
-            <div class="col-12 py-4">
-                <div class="card text-center">
-                    <div class="card-title">
-                    </div>
-                    <div class="card-body">
+        @if(!$filteredTrains)
+            @foreach ($filteredTrains as $filteredTrain)
+                <div class="col-12 py-4">
+                    <div class="card text-center">
+                        <div class="card-title">
+                        </div>
+                        <div class="card-body">
 
-                        <p> <span class="fw-bold">Partenza:</span> {{$train->station_of_departure}}  =====>  <span class="fw-bold">Arrivo:</span> {{$train->station_of_arrival}} </p>
-                    
-                        <p><span class="fw-bold">Orario di Partenza:</span> {{$train->time_of_departure}}   <span class="fw-bold">Orario di Arrivo: </span> {{$train->time_of_arrival}}</p>
-                        <p></p>
-                    </div>
+                            <p> <span class="fw-bold">Partenza:</span> {{$filteredTrain->station_of_departure}} =====> <span
+                                    class="fw-bold">Arrivo:</span> {{$filteredTrain->station_of_arrival}} </p>
 
+                            <p><span class="fw-bold">Orario di Partenza:</span> {{$filteredTrain->time_of_departure}} <span
+                                    class="fw-bold">Orario di Arrivo: </span> {{$filteredTrain->time_of_arrival}}</p>
+                            <p></p>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
 
 
 
-        @endforeach
+            @endforeach
+        @else 
+            <h1 class="text-center text-danger">Nessun treno in data odierna causa sciopero !</h1>
+        @endif
 
 
     </div>

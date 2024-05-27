@@ -11,11 +11,11 @@ class TrainController extends Controller
     public function getTrain()
     {   
 
-        $trains = Train::all();
+         $trains = Train::all();
         $currentDate = now()->format('Y-m-d');
         // $filteredTrain = Train::where('time_of_departure','like', $currentDate . '%')->get();
-        $filteredTrain = Train::whereDate('time_of_departure', $currentDate)->get();
-        //  dd($filteredTrain);
-        return view('pages.welcome', compact('trains', 'filteredTrain'));
+        $filteredTrains = Train::whereDate('time_of_departure', $currentDate)->get();
+        //  dd($filteredTrains);
+        return view('pages.welcome', compact('filteredTrains', 'trains'));
     }
 }
